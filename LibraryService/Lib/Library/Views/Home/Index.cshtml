@@ -1,0 +1,74 @@
+﻿@*@model IEnumerable<Library.Models.Book>*@
+@model Library.Models.Book
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/Core/scriptjava.js"></script>
+<script src="~/Scripts/Home/Books.js"></script>
+
+<div id="Home">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameBook)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearPublish)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tbody id="contentBooks">
+
+
+        </tbody>   
+        @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameBook)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.YearPublish)
+                </td>
+                <td>
+                    <a href="Home/Edit?&Id=@item.Id" style="cursor:pointer">Edit</a>
+                    <a onclick="deleteBook(@item.Id, this)" style="cursor:pointer">Delete</a>
+                </td>
+            </tr>
+        }*@
+
+    </table>
+
+    <div class="form-group" style="width:100%; height:60px;">
+        <div class="col-md-10">
+            <select class="form-control" id="selectShow" onchange="getAllBook()">
+                <option value="0">All books</option>
+                <option value="1">Books available </option>
+                <option value="2">Books taken by the user </option>
+            </select>
+        </div> 
+    </div>
+
+    <div id="work" class="form-group" style="margin-left: 5%; display: block">
+        <a href="History/CreateHistory" style="display: inline-block"> <input type="button" id="BookOut" class="btn btn-default" name="BookOut" value="Book out" /></a>
+        <a href="User/CreateUser" style="display: inline-block"> <input type="button" id="AddUser" class="btn btn-default" name="AddUser" value="Add user" /></a>
+        <a href="User/Users" style="display: inline-block"> <input type="button" id="AllUsers" class="btn btn-default" name="AllUsers" value="All users" /></a>
+        <a href="History/Histories" style="display: inline-block"> <input type="button" id="AllHistories" class="btn btn-default" name="AllHistories" value="All histories" /></a>
+        <input type="button" id="mail" class="btn btn-default" name="mail" value="Bulk E-mail" onclick="sendMail()" style="display: inline-block" />
+    </div>
+
+</div>
